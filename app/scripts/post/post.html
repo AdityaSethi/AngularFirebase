@@ -1,4 +1,4 @@
-<div data-ng-repeat="post in posts">
+<div ng-repeat="(postId, post) in posts">
   <a data-ng-href="{{ post.url }}">{{ post.title }}</a>
   <a data-ng-click="deletePost($index)">delete</a>
 </div>

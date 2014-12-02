@@ -11,7 +11,7 @@
 angular
   .module('angularFirebaseApp', [
     'ui.router',
-    'news.post.controllers',
+    'news.post.controllers'
   ])
   .config(function ($stateProvider) {
     $stateProvider
