@@ -1,22 +1,24 @@
 'use strict';
 
 angular.module('news.post.controllers', [
+		'ui.router',
 		'news.post.services'
 	])
-	.controller('PostCtrl', function ($scope, Post) {
-		$scope.posts = Post.get();
-    $scope.post = {url: 'http://', title: ''};
+	.controller('PostCtrl', function ($scope, $state, Post) {
+		$scope.posts = Post.all;
 
-    $scope.submitPost = function () {
-		  Post.save($scope.post, function (ref) {
-			  $scope.posts[ref.name] = $scope.post;
-			  $scope.post = {url: 'http://', title: ''};
-			});
-		};
+	  $scope.post = {url: 'http://', 'title': ''};
 
-    $scope.deletePost = function (postId) {
-		  Post.delete({id: postId}, function () {
-		    delete $scope.posts[postId];
-		  });
-		};
+	  $scope.submitPost = function () {
+	    Post.create($scope.post).then(function (ref) {
+	      $state.go('posts', {postId: ref.name()})
+	    });
+	  };
+
+	  $scope.deletePost = function (post) {
+	    Post.delete(post);
+	  };
+	})
+	.controller('PostViewCtrl', function ($scope, $stateParams, Post) {
+	  $scope.post = Post.get($stateParams.postId);
 	});
