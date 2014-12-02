@@ -11,13 +11,18 @@ angular.module('news.nav.controllers', [
 	  
 	  $scope.post = {url: 'http://', title: ''};
 
+	  $scope.user = Auth.user;
+
 	  $scope.login = function () {
       Auth.login($scope.user).then(function () {
-        $state.go('posts')
-      })
+        $state.go('posts');
+      });
     };
 
 	  $scope.submitPost = function () {
+	  	$scope.post.creator = $scope.user.profile.username;
+  		$scope.post.creatorUID = $scope.user.uid;
+  
 	    Post.create($scope.post).then(function (ref) {
 	      $state.go('posts', {postId: ref.name()});
 	      $scope.post = {url: 'http://', title: ''};

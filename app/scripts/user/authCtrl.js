@@ -6,7 +6,7 @@ angular.module('news.user.controllers', [
   ])
   .controller('AuthCtrl', function ($scope, $state, Auth, user) {
     if (user) {
-      $state.path('posts');
+      $state.go('posts');
     }
 
     $scope.login = function () {
@@ -18,8 +18,12 @@ angular.module('news.user.controllers', [
     };
 
     $scope.register = function () {
-      Auth.register($scope.user).then(function() {
+      Auth.register($scope.user).then(function(user) {
         return Auth.login($scope.user).then(function() {
+          user.username = $scope.user.username;
+          return Auth.createProfile(user);
+        })
+        .then(function () {
           $state.go('posts');
         });
       }, function(error) {

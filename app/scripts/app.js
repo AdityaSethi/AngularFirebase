@@ -49,7 +49,7 @@ angular
             return Auth.resolveUser();
           }
         }
-      })
+      });
   })
   .run(function ($state) {
     $state.go('posts');
