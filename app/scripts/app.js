@@ -14,6 +14,7 @@ angular
     'news.common.filters',
     'news.post.controllers',
     'news.nav.controllers',
+    'news.user.controllers',
     'firebase'
   ])
   .constant('FIREBASE_URL', 'https://xebianews.firebaseIO.com/')
@@ -28,7 +29,27 @@ angular
         url: 'posts/:postId',
         templateUrl: 'scripts/post/showpost.html',
         controller: 'PostViewCtrl'
-      });
+      })
+      .state('register', {
+        url: 'register',
+        templateUrl: 'scripts/user/register.html',
+        controller: 'AuthCtrl',
+        resolve: {
+          user: function(Auth) {
+            return Auth.resolveUser();
+          }
+        }
+      })
+      .state('login', {
+        url: 'login',
+        templateUrl: 'views/login.html',
+        controller: 'AuthCtrl',
+        resolve: {
+          user: function(Auth) {
+            return Auth.resolveUser();
+          }
+        }
+      })
   })
   .run(function ($state) {
     $state.go('posts');
