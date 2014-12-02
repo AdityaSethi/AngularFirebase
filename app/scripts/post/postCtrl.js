@@ -9,12 +9,6 @@ angular.module('news.post.controllers', [
 
 	  $scope.post = {url: 'http://', 'title': ''};
 
-	  $scope.submitPost = function () {
-	    Post.create($scope.post).then(function (ref) {
-	      $state.go('posts', {postId: ref.name()})
-	    });
-	  };
-
 	  $scope.deletePost = function (post) {
 	    Post.delete(post);
 	  };

@@ -21,10 +21,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
-      <div data-ui-view=""></div>
-    </div>
-
+    <div ng-include="'scripts/navigation/nav.html'"></div>
+    <div class="container" data-ui-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -69,6 +67,8 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/post/postCtrl.js"></script>
         <script src="scripts/post/postService.js"></script>
+        <script src="scripts/navigation/navCtrl.js"></script>
+        <script src="scripts/common/hostnameFromUrlFilter.js"></script>
         <!-- endbuild -->
 </body>
 </html>

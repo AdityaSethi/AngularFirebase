@@ -11,7 +11,9 @@
 angular
   .module('angularFirebaseApp', [
     'ui.router',
+    'news.common.filters',
     'news.post.controllers',
+    'news.nav.controllers',
     'firebase'
   ])
   .constant('FIREBASE_URL', 'https://xebianews.firebaseIO.com/')
@@ -26,7 +28,7 @@ angular
         url: 'posts/:postId',
         templateUrl: 'scripts/post/showpost.html',
         controller: 'PostViewCtrl'
-      })
+      });
   })
   .run(function ($state) {
     $state.go('posts');
