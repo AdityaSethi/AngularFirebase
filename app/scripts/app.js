@@ -42,13 +42,18 @@ angular
       })
       .state('login', {
         url: 'login',
-        templateUrl: 'views/login.html',
+        templateUrl: 'scripts/user/login.html',
         controller: 'AuthCtrl',
         resolve: {
           user: function(Auth) {
             return Auth.resolveUser();
           }
         }
+      })
+      .state('user', {
+        url: 'user/:userId',
+        templateUrl: 'scripts/user/profile.html',
+        controller: 'ProfileCtrl'
       });
   })
   .run(function ($state) {

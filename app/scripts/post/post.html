@@ -11,7 +11,8 @@
         </a>
       </div>
       <div>
-        <span>submitted by <a data-ui-sref="users({userId: post.creatorUID })">{{ post.creator }}</a></span>
+        {{post.creatorUID}}
+        <span>submitted by <a data-ui-sref="user({userId: post.creatorUID })">{{ post.creator }}</a></span>
         &mdash;
         <a data-ui-sref="showpost({postId:  post.$id })">comments</a>
         <a data-ng-click="deletePost(post)" ng-show="user.uid === post.creatorUID">delete</a>
